@@ -1,12 +1,6 @@
 package org.example;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class App
 {
@@ -19,26 +13,20 @@ public class App
         // Getting paths from user
         System.out.print("Enter path for JSON store file:");
         storeJsonPath = scanner.nextLine();
+        //storeJsonPath = "C:/Users/alekf/IdeaProjects/ISF-Picking-Scheduler/src/self-test-data/logic-bomb/store.json";
         System.out.print("Enter path for JSON orders file:");
         ordersJsonPath = scanner.nextLine();
+        //ordersJsonPath = "C:/Users/alekf/IdeaProjects/ISF-Picking-Scheduler/src/self-test-data/logic-bomb/orders.json";
         scanner.close();
-
-        // Wczytanie danych z plików JSON
+        // Store and orders load
         Store store = JsonReader.readStore(storeJsonPath);
         List<Order> orders = JsonReader.readOrders(ordersJsonPath);
-
-        // Stworzenie harmonogramu kompletowania zamówień
+        // Creating schedule
         OrderScheduler scheduler = new OrderScheduler();
-        List<Order> scheduledOrders = scheduler.scheduleOrders(store, orders);
-
-        // Wypisanie zaplanowanych zamówień dla każdego pracownika
-        for (String picker : store.getPickers()) {
-            System.out.println("Picker " + picker + ":");
-            for (Order order : scheduledOrders) {
-                if (order.getPicker() != null && order.getPicker().equals(picker)) {
-                    System.out.println("- Order " + order.getOrderId());
-                }
-            }
+        List<ScheduledOrder> scheduledOrders = scheduler.scheduleOrders(store, orders);
+        // Printing schedule
+        for (ScheduledOrder position : scheduledOrders) {
+            System.out.println(position + "\n");
         }
     }
 }

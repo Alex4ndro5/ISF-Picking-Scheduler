@@ -10,6 +10,7 @@ import java.time.LocalTime;
         private Duration pickingTime;
         private LocalTime completeBy;
 
+        public Order(){}
         public Order(String orderId, BigDecimal orderValue, Duration pickingTime, LocalTime completeBy) {
             this.orderId = orderId;
             this.orderValue = orderValue;

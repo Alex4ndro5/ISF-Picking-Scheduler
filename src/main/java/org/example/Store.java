@@ -1,7 +1,5 @@
 package org.example;
 
-import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -10,6 +8,7 @@ import java.util.List;
         private LocalTime pickingStartTime;
         private LocalTime pickingEndTime;
 
+        public Store(){}
         public Store(List<String> pickers, LocalTime pickingStartTime, LocalTime pickingEndTime) {
             this.pickers = pickers;
             this.pickingStartTime = pickingStartTime;
