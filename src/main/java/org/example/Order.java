@@ -5,17 +5,31 @@ import java.time.Duration;
 import java.time.LocalTime;
 
     public class Order {
-        public String orderID;
-        public BigDecimal orderValue;
-        public Duration pickingTime;
-        public LocalTime completeBy;
-        public Order(){
+        private String orderId;
+        private BigDecimal orderValue;
+        private Duration pickingTime;
+        private LocalTime completeBy;
 
-    }
-    public Order(String _orderID, BigDecimal _orderValue, Duration _pickingTime, LocalTime _completeBy){
-        this.orderID = _orderID;
-        this.orderValue = _orderValue;
-        this.pickingTime = _pickingTime;
-        this.completeBy = _completeBy;
-    }
+        public Order(String orderId, BigDecimal orderValue, Duration pickingTime, LocalTime completeBy) {
+            this.orderId = orderId;
+            this.orderValue = orderValue;
+            this.pickingTime = pickingTime;
+            this.completeBy = completeBy;
+        }
+
+        public String getOrderId() {
+            return orderId;
+        }
+
+        public BigDecimal getOrderValue() {
+            return orderValue;
+        }
+
+        public Duration getPickingTime() {
+            return pickingTime;
+        }
+
+        public LocalTime getCompleteBy() {
+            return completeBy;
+        }
 }
